@@ -13,6 +13,9 @@
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello World!');
+		const url = new URL('https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2')
+		const res = await fetch(url, request)
+
+		return new Response(await res.text(), res)
 	},
-} satisfies ExportedHandler<Env>;
+} satisfies ExportedHandler<Env>
