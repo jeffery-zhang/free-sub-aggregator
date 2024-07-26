@@ -29,9 +29,13 @@ export default {
 
 		const result = resStrCollection.reduce((r, curr) => {
 			if (!curr) return r
-			const originString = Buffer.from(curr, 'base64').toString('utf-8')
-			console.log('origin ===> ', originString)
-			return r + originString
+			try {
+				const originString = Buffer.from(curr, 'base64').toString('utf-8')
+				return r + originString
+			} catch (error) {
+				console.error(`Error parsing content from encoded content:`, error)
+				return r
+			}
 		}, '')
 
 		const encodedResult = Buffer.from(result).toString('base64')
