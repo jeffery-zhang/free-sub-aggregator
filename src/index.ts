@@ -18,6 +18,7 @@ export default {
 		const subUrls = [
 			'https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2',
 			'https://www.999000.best/sub?token=1e1f99b24e0ca9ed1bd6aacf0026dcf8',
+			'https://falcocloud.730894.xyz/api/v1/client/subscribe?token=8136c7a67fd46e39dfb8e2366702dbce',
 		]
 
 		const resCollection: Promise<string>[] = []
