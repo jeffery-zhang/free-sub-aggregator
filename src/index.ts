@@ -11,11 +11,43 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import { Buffer } from 'node:buffer'
+
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		const url = new URL('https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2')
-		const res = await fetch(url, request)
+		const subUrls = [
+			'https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2',
+			'https://www.999000.best/sub?token=1e1f99b24e0ca9ed1bd6aacf0026dcf8',
+		]
 
-		return new Response(await res.text(), res)
+		const resCollection: Promise<string>[] = []
+		subUrls.forEach(async (url) => {
+			resCollection.push(requestSubs(url, request))
+		})
+
+		const resStrCollection: string[] = await Promise.all(resCollection)
+
+		const result = resStrCollection.reduce((r, curr) => {
+			if (!curr) return r
+			const originString = Buffer.from(curr, 'base64').toString('utf-8')
+			console.log('origin ===> ', originString)
+			return r + originString
+		}, '')
+
+		const encodedResult = Buffer.from(result).toString('base64')
+
+		return new Response(encodedResult, { headers: { 'Content-Type': 'text/plain' } })
 	},
 } satisfies ExportedHandler<Env>
+
+async function requestSubs(subUrl: string, request: Request): Promise<string> {
+	try {
+		const url = new URL(subUrl)
+		const res = await fetch(url, request)
+
+		return await res.text()
+	} catch (error) {
+		console.error(`Error fetching content from ${subUrl}:`, error)
+		return ''
+	}
+}
