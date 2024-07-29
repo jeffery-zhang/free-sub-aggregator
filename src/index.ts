@@ -17,8 +17,8 @@ export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		const subUrls = [
 			'https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2',
-			'https://www.999000.best/sub?token=1e1f99b24e0ca9ed1bd6aacf0026dcf8',
-			'https://falcocloud.730894.xyz/api/v1/client/subscribe?token=8136c7a67fd46e39dfb8e2366702dbce',
+			'https://raw.gitmirror.com/sun9426/sun9426.github.io/main/subscribe/v2ray.txt',
+			'https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt',
 		]
 
 		const resCollection: Promise<string>[] = []
