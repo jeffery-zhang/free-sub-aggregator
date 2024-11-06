@@ -19,6 +19,7 @@ export default {
 			'https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2',
 			'https://raw.gitmirror.com/sun9426/sun9426.github.io/main/subscribe/v2ray.txt',
 			'https://edge.zhj13.com/3ca7d8c4-de2d-48ac-a651-583a355658b1?b64',
+			'https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub',
 		]
 
 		const plainSubUrls: string[] = ['https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt']
@@ -26,30 +27,6 @@ export default {
 		const singleServerUrls: string[] = [
 			'vless://3ca7d8c4-de2d-48ac-a651-583a355658b1@edge.zhj13.com:443?encryption=none&security=tls&sni=edge.zhj13.com&fp=randomized&type=ws&host=edge.zhj13.com&path=%2F%3Fed%3D2560#edge.zhj13.com',
 		]
-
-		// const resCollection: Promise<string>[] = []
-		// base64EncodedSubUrls.forEach(async (url) => {
-		// 	resCollection.push(requestSubs(url, request))
-		// })
-
-		// const resStrCollection: string[] = await Promise.all(resCollection)
-
-		// let result = resStrCollection.reduce((r, curr) => {
-		// 	if (!curr) return r
-		// 	try {
-		// 		const originString = Buffer.from(curr, 'base64').toString('utf-8')
-		// 		return r + originString
-		// 	} catch (error) {
-		// 		console.error(`Error parsing content from encoded content:`, error)
-		// 		return r
-		// 	}
-		// }, '')
-
-		// result + extraServer.map((s) => s).join('')
-
-		// const encodedResult = Buffer.from(result).toString('base64')
-
-		// return new Response(encodedResult, { headers: { 'Content-Type': 'text/plain' } })
 
 		const requests: Promise<string>[] = []
 
