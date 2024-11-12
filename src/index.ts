@@ -20,6 +20,9 @@ export default {
 			'https://raw.gitmirror.com/sun9426/sun9426.github.io/main/subscribe/v2ray.txt',
 			'https://edge.zhj13.com/3ca7d8c4-de2d-48ac-a651-583a355658b1?b64',
 			'https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub',
+			'https://sub.pmsub.me/base64',
+			'https://sub.sharecentre.online/sub',
+			'https://ghp.ci/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt',
 		]
 
 		const plainSubUrls: string[] = ['https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt']
