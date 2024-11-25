@@ -15,25 +15,39 @@ import { Buffer } from 'node:buffer'
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		const subUrls = [
+		const subUrlsDecodeNeeded = [
 			'https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2',
 			'https://raw.gitmirror.com/sun9426/sun9426.github.io/main/subscribe/v2ray.txt',
-			'https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt',
 			'https://edge.zhj13.com/3ca7d8c4-de2d-48ac-a651-583a355658b1?b64',
+			'https://sub.pmsub.me/base64',
+			'https://sub.sharecentre.online/sub',
+		]
+
+		const subUrls = [
+			'https://git.io/emzv2ray',
+			'https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt',
+			'https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/all',
 		]
 
 		const extraServer = [
 			'vless://3ca7d8c4-de2d-48ac-a651-583a355658b1@edge.zhj13.com:443?encryption=none&security=tls&sni=edge.zhj13.com&fp=randomized&type=ws&host=edge.zhj13.com&path=%2F%3Fed%3D2560#edge.zhj13.com',
 		]
 
+		const resCollectionDecodeNeeded: Promise<string>[] = []
+		subUrlsDecodeNeeded.forEach(async (url) => {
+			resCollectionDecodeNeeded.push(requestSubs(url, request))
+		})
+
 		const resCollection: Promise<string>[] = []
 		subUrls.forEach(async (url) => {
 			resCollection.push(requestSubs(url, request))
 		})
 
+		const resStrCollectionDecodeNeeded: string[] = await Promise.all(resCollectionDecodeNeeded)
+
 		const resStrCollection: string[] = await Promise.all(resCollection)
 
-		let result = resStrCollection.reduce((r, curr) => {
+		let result = resStrCollectionDecodeNeeded.reduce((r, curr) => {
 			if (!curr) return r
 			try {
 				const originString = Buffer.from(curr, 'base64').toString('utf-8')
@@ -44,7 +58,7 @@ export default {
 			}
 		}, '')
 
-		result + extraServer.map((s) => s).join('')
+		result + resStrCollection.join('') + extraServer.map((s) => s).join('')
 
 		const encodedResult = Buffer.from(result).toString('base64')
 
