@@ -15,63 +15,65 @@ import { Buffer } from 'node:buffer'
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		const subUrlsDecodeNeeded = [
+		const base64EncodedSubUrls: string[] = [
 			'https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2',
 			'https://raw.gitmirror.com/sun9426/sun9426.github.io/main/subscribe/v2ray.txt',
 			'https://edge.zhj13.com/3ca7d8c4-de2d-48ac-a651-583a355658b1?b64',
+			'https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub',
 			'https://sub.pmsub.me/base64',
 			'https://sub.sharecentre.online/sub',
+			'https://ghp.ci/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt',
 		]
 
-		const subUrls = [
-			'https://git.io/emzv2ray',
+		const plainSubUrls: string[] = [
 			'https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt',
 			'https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/all',
 		]
 
-		const extraServer = [
+		const singleServerUrls: string[] = [
 			'vless://3ca7d8c4-de2d-48ac-a651-583a355658b1@edge.zhj13.com:443?encryption=none&security=tls&sni=edge.zhj13.com&fp=randomized&type=ws&host=edge.zhj13.com&path=%2F%3Fed%3D2560#edge.zhj13.com',
 		]
 
-		const resCollectionDecodeNeeded: Promise<string>[] = []
-		subUrlsDecodeNeeded.forEach(async (url) => {
-			resCollectionDecodeNeeded.push(requestSubs(url, request))
+		const requests: Promise<string>[] = []
+
+		base64EncodedSubUrls.forEach((url) => {
+			requests.push(requestSubs(url, request, true))
 		})
 
-		const resCollection: Promise<string>[] = []
-		subUrls.forEach(async (url) => {
-			resCollection.push(requestSubs(url, request))
+		plainSubUrls.forEach((url) => {
+			requests.push(requestSubs(url, request, false))
 		})
 
-		const resStrCollectionDecodeNeeded: string[] = await Promise.all(resCollectionDecodeNeeded)
+		let result: string = (await Promise.all(requests)).reduce((prev, curr) => prev + curr)
 
-		const resStrCollection: string[] = await Promise.all(resCollection)
+		result += singleServerUrls.join('')
 
-		let result = resStrCollectionDecodeNeeded.reduce((r, curr) => {
-			if (!curr) return r
-			try {
-				const originString = Buffer.from(curr, 'base64').toString('utf-8')
-				return r + originString
-			} catch (error) {
-				console.error(`Error parsing content from encoded content:`, error)
-				return r
-			}
-		}, '')
-
-		result + resStrCollection.join('') + extraServer.map((s) => s).join('')
-
-		const encodedResult = Buffer.from(result).toString('base64')
-
-		return new Response(encodedResult, { headers: { 'Content-Type': 'text/plain' } })
+		try {
+			const base64EncodedResult = Buffer.from(result).toString('base64')
+			return new Response(base64EncodedResult, { headers: { 'Content-Type': 'text/plain' } })
+		} catch (error) {
+			console.error('Error parsing sub urls:', error)
+			return new Response('error')
+		}
 	},
 } satisfies ExportedHandler<Env>
 
-async function requestSubs(subUrl: string, request: Request): Promise<string> {
+async function requestSubs(subUrl: string, request: Request, isBase64: boolean): Promise<string> {
 	try {
 		const url = new URL(subUrl)
 		const res = await fetch(url, request)
 
-		return await res.text()
+		let result = await res.text()
+		if (isBase64) {
+			try {
+				result = Buffer.from(result, 'base64').toString('utf-8')
+			} catch (error) {
+				console.error(`Error decode content from ${subUrl}:`, error)
+				result = ''
+			}
+		}
+
+		return result
 	} catch (error) {
 		console.error(`Error fetching content from ${subUrl}:`, error)
 		return ''
