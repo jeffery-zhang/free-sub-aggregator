@@ -23,6 +23,7 @@ export default {
 			'https://sub.pmsub.me/base64',
 			'https://sub.sharecentre.online/sub',
 			'https://ghp.ci/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt',
+			'https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.txt',
 		]
 
 		const plainSubUrls: string[] = ['https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt']
