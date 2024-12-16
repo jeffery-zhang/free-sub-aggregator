@@ -26,7 +26,10 @@ export default {
 			'https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.txt',
 		]
 
-		const plainSubUrls: string[] = ['https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt']
+		const plainSubUrls: string[] = [
+			'https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt',
+			'https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/all',
+		]
 
 		const singleServerUrls: string[] = [
 			'vless://3ca7d8c4-de2d-48ac-a651-583a355658b1@edge.zhj13.com:443?encryption=none&security=tls&sni=edge.zhj13.com&fp=randomized&type=ws&host=edge.zhj13.com&path=%2F%3Fed%3D2560#edge.zhj13.com',
