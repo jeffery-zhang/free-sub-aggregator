@@ -24,11 +24,13 @@ export default {
 			'https://sub.sharecentre.online/sub',
 			'https://ghp.ci/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt',
 			'https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.txt',
+			'https://chromego-sub.netlify.app/sub/base64.txt',
 		]
 
 		const plainSubUrls: string[] = [
 			'https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt',
 			'https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/all',
+			'https://git.io/emzv2ray',
 		]
 
 		const singleServerUrls: string[] = [
