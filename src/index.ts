@@ -34,19 +34,9 @@ export default {
 		]
 
 		const singleServerUrls: string[] = [
-			'vless://3ca7d8c4-de2d-48ac-a651-583a355658b1@edge.zhj13.com:443?encryption=none&security=tls&sni=edge.zhj13.com&fp=randomized&type=ws&host=edge.zhj13.com&path=%2F%3Fed%3D2560#edge.zhj13.com',
-			'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDVANTQuMTc4LjE5MS4yMzY6NDQz',
-			'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDVANDMuMjAzLjEyNy4xNTI6NDQz',
-			'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDVAMTguMTgxLjE3Ni4yMjc6NDQz',
-			'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDVAMy4xMTIuMjM2LjM6NDQz',
-			'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDVAMTMuMTE1LjIzMS42NDo0NDM=',
-			'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDVANTIuNzkuMjQ4LjE5Mzo0NDM=',
-			'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDVANTIuMTk0LjIxMi4yMzU6NDQz',
-			'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDVAMzUuOTAuMy44MTo0NDM=',
-			'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDVANTQuMjAyLjc3LjgxOjQ0Mw==',
-			'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDVANTQuMTg2LjkyLjM0OjQ0Mw==',
-			'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDVANDMuMjA3LjIzMi4yMjg6NDQz',
-			'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDVANTQuMjQ1LjIwNy4xNDQ6NDQz',
+			'vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIlRHLUB2dmtqMTEiLA0KICAiYWRkIjogIjIzLjIyNy4zOS4xMSIsDQogICJwb3J0IjogIjgwODAiLA0KICAiaWQiOiAiOTY5ZjE5MDktYzBkMy00YzMwLTgxM2QtM2FlYzVjODM4YjdkIiwNCiAgImFpZCI6ICIwIiwNCiAgInNjeSI6ICJhdXRvIiwNCiAgIm5ldCI6ICJ3cyIsDQogICJ0eXBlIjogIm5vbmUiLA0KICAiaG9zdCI6ICJkb25ndGFpd2FuZzE1LmR0a3U0Ny54eXoiLA0KICAicGF0aCI6ICIvMUlLWWpWMHIvIiwNCiAgInRscyI6ICIiLA0KICAic25pIjogIiIsDQogICJhbHBuIjogIiIsDQogICJmcCI6ICIiDQp9',
+			'vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIlRHLUB2dmtqMTEiLA0KICAiYWRkIjogIjEwOS4xMDQuMTUyLjIyMCIsDQogICJwb3J0IjogIjIzMDk5IiwNCiAgImlkIjogIjVlM2NlNmE3LTE3MGUtNDkzOS05YWFlLWM4ZmVmYjM1YTdlYSIsDQogICJhaWQiOiAiMCIsDQogICJzY3kiOiAiYXV0byIsDQogICJuZXQiOiAid3MiLA0KICAidHlwZSI6ICJub25lIiwNCiAgImhvc3QiOiAiIiwNCiAgInBhdGgiOiAiL0h6dU9paEI2LyIsDQogICJ0bHMiOiAiIiwNCiAgInNuaSI6ICIiLA0KICAiYWxwbiI6ICIiLA0KICAiZnAiOiAiIg0KfQ==',
+			'trojan://Puj01Rc8UcA9IzcFcYOs8KMOhCz6aX2Q@mfyousheng.nl.eu.org:443?security=tls&type=ws&path=%2FtjwsLhx0SFASG4l9FERJ1g#TG-%40vvkj11',
 		]
 
 		const requests: Promise<string>[] = []
